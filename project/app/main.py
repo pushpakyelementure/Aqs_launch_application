@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from contextlib import asynccontextmanager
 
 # from app.auth.config import firebase_init
-from app.db import config
+from app.db.config import init_db
 # from app.routers import api
 from app.config import get_settings, Settings
 
@@ -12,7 +12,7 @@ app = FastAPI()
 @asynccontextmanager
 async def get_db(app: FastAPI):
     # await firebase_init()  # connect to be db
-    await config.init_db()
+    await init_db()
     print("Connected to database")
     yield
 
